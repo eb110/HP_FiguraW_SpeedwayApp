@@ -1,0 +1,20 @@
+{
+  "name": "HP_FiguraW_SpeedwayApp",
+  "version": "1.0.0",
+  "description": "Honors Project Wladyslaw Figura GCU 2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eb110/HP_FiguraW_SpeedwayApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eb110/HP_FiguraW_SpeedwayApp/issues"
+  },
+  "homepage": "https://github.com/eb110/HP_FiguraW_SpeedwayApp#readme"
+}
