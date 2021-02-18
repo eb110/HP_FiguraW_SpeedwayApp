@@ -13,10 +13,10 @@
                 </div>
 
                 <div id="ridersInput">
-                    <input type="text" id="Rnr1"  list="datalist1" class="rdsInput">
+                    <input type="text" id="Rnr<%= i %>"  list="datalist1" class="rdsInput">
                     <datalist id="datalist1">
-                        <% for (let i = 0; i <riders.length; i++) { %>
-                        <option value="<%= riders[i] %> ">
+                        <% for (let k = 0; k <riders.length; k++) { %>
+                        <option value="<%= riders[k] %> ">
                             <% } %>
                     </datalist>
                 </div>
@@ -29,7 +29,7 @@
                 </div>   
                 <% for (let j = 0; j < 5; j++) { %>   
                 <div id="pointsInput">
-                    <input type="text" class="ptsInput">
+                    <input type="text" id="Rnr<%= i%>Pnr<%= j+1%>" class="ptsInput">
                 </div>
                 <% } %>
                 <div style="clear:both"></div>  
@@ -46,10 +46,10 @@
                     </div>
     
                     <div id="ridersInput">
-                        <input type="text" id="Rnr1"  list="datalist1" class="rdsInput">
+                        <input type="text" id="Rnr<%= i %>"  list="datalist1" class="rdsInput">
                         <datalist id="datalist1">
-                            <% for (let i = 0; i <riders.length; i++) { %>
-                            <option value="<%= riders[i] %> ">
+                            <% for (let k = 0; k <riders.length; k++) { %>
+                            <option value="<%= riders[k] %> ">
                                 <% } %>
                         </datalist>
                     </div>
@@ -62,13 +62,13 @@
                     </div>   
                     <% for (let j = 0; j < 5; j++) { %>   
                     <div id="pointsInput">
-                        <input type="text" class="ptsInput">
+                        <input type="text" id="Rnr<%= i%>Pnr<%= j+1%>" class="ptsInput">
                     </div>
                     <% } %>
                     <div style="clear:both"></div>  
                 </div>
                 <% } %>
-        </div>   
+            </div>    
 
         <div style="clear:both"></div>  
 
