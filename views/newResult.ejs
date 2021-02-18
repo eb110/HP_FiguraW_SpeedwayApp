@@ -1,0 +1,87 @@
+<div id="resultContainer">
+
+    <%= riders.length %>
+
+    <form id="riders-form">
+
+        <div id="teamLeft"> 
+
+            <% for (let i = 1; i <= 8; i++) { %>
+            <div id="riders">
+                <div id="ridersLabel">
+                    <label>Rider nr <%= i %> </label>
+                </div>
+
+                <div id="ridersInput">
+                    <input type="text" id="Rnr1"  list="datalist1" class="rdsInput">
+                    <datalist id="datalist1">
+                        <% for (let i = 0; i <riders.length; i++) { %>
+                        <option value="<%= riders[i] %> ">
+                            <% } %>
+                    </datalist>
+                </div>
+                <div style="clear:both"></div>    
+            </div>
+      
+            <div id="points">
+                <div id="pointsLabel">
+                    <label>Points</label>
+                </div>   
+                <% for (let j = 0; j < 5; j++) { %>   
+                <div id="pointsInput">
+                    <input type="text" class="ptsInput">
+                </div>
+                <% } %>
+                <div style="clear:both"></div>  
+            </div>
+            <% } %>
+        </div>   
+      
+        <div id="teamRight">
+
+            <% for (let i = 9; i <= 16; i++) { %>
+                <div id="riders">
+                    <div id="ridersLabel">
+                        <label>Rider nr <%= i %> </label>
+                    </div>
+    
+                    <div id="ridersInput">
+                        <input type="text" id="Rnr1"  list="datalist1" class="rdsInput">
+                        <datalist id="datalist1">
+                            <% for (let i = 0; i <riders.length; i++) { %>
+                            <option value="<%= riders[i] %> ">
+                                <% } %>
+                        </datalist>
+                    </div>
+                    <div style="clear:both"></div>    
+                </div>
+          
+                <div id="points">
+                    <div id="pointsLabel">
+                        <label>Points</label>
+                    </div>   
+                    <% for (let j = 0; j < 5; j++) { %>   
+                    <div id="pointsInput">
+                        <input type="text" class="ptsInput">
+                    </div>
+                    <% } %>
+                    <div style="clear:both"></div>  
+                </div>
+                <% } %>
+        </div>   
+
+        <div style="clear:both"></div>  
+
+
+
+    </form>
+
+
+    <div id="algorithmContainer">
+        <button id="get-result">Confirm</button>
+        <dupa>
+
+        </dupa>
+    </div>
+
+</div>
