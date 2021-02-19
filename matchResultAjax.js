@@ -1,10 +1,12 @@
+let newRidersBase = []
+let ridersBase = []
+
 $(function(){
-    $('#get-result').on('click', () => {
+    $('#gett-result').on('click', () => {
         $.ajax({
             url: '/resultTable',
             contentType: 'application/json',
             success: (response) => {
-                let ridersBase = []
                 for(let i = 1; i <= 16; i++){
                     let wsad = '#Rnr' + i
                     let rev = $(wsad)
@@ -15,9 +17,7 @@ $(function(){
                         let wsad2 = '#Rnr' + i + 'Pnr' + j
                         let rev2 = $(wsad2)
                         ridersBase[i - 1].points.push(rev2.val())
-                        console.log(ridersBase[i-1].points[j-1])
                     }
-                    console.log(ridersBase[i-1].name)
                 }
                 const biegi = 13
                 let wsad = '<div>KURWA JEGO</div>'
@@ -31,4 +31,26 @@ $(function(){
             }
         })
     })
+
+    $('#new-rider').on('click', () => {
+        event.preventDefault();
+        let name = $('#newRiderName')
+        let date = $('#newRiderDate')
+        name = name.val()
+        date = date.val()
+        let newRider = {}
+        newRider.name = name
+        newRider.date = date
+        $.ajax({
+            url:'/newRider',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ newRider: newRider}),
+            success: (response) => {
+                console.log(response)
+            }
+        })
+    })
+
+
 })
