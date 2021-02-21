@@ -8,7 +8,6 @@ const Rider = require('../models/rider')
 let ridersList = []
 
 router.get('/', (req, res) => {
-
     res.render('index.ejs')
 })
 
@@ -28,6 +27,13 @@ router.get('/resultTable', (req,res) => {
     res.send({riders: ridersList})
 })
 
+let dataTypedByUser = []
+router.post('/getResult', (req, res) => {
+    dataTypedByUser = req.body.result
+    console.log(dataTypedByUser)
+    res.send()
+})
+
 router.post('/newRider', async (req, res) => {
     let newRdr = req.body.newRider
     newRdr.date = new Date(newRdr.date)
@@ -36,6 +42,14 @@ router.post('/newRider', async (req, res) => {
         bornYear: newRdr.date
     })
     await newRider.save()
+})
+
+router.get('/teamLeft', (req,res) => {
+    res.send({riders: dataTypedByUser[0]})
+})
+
+router.get('/teamRight', (req,res) => {
+    res.send({riders: dataTypedByUser[1]})
 })
 
 

@@ -7,8 +7,8 @@ require('./models/mongoose')
 const indexRouter = require('./routes/index')
 app.use(express.urlencoded({ extended: false}))
 
-app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
+app.set('layout', 'layouts/layout')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')

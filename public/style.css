@@ -6,7 +6,7 @@ body
     font-size: 20px;
 }
 
-#container
+#wrapper
 {
     width: 80%;
     margin-left: auto;
@@ -14,11 +14,11 @@ body
 
 }
 
-#logo
+header
 {
   /*  height: 65px;*/
     background-color: #485b3b;
-    font-size: 24px;
+    font-size: 20px;
     color: white;
     text-align: center;
     text-transform: uppercase;
@@ -32,8 +32,10 @@ body
     2px -2px 0 #33402a;
 }
 
-#stopka
+footer
 {
+    margin-left: auto;
+    margin-right: auto;
    /* height: 45px;*/
     background-color: #485b3b;
     font-size: 16px;
@@ -87,5 +89,58 @@ body
 #algorithmContainer
 {
     background-color: coral;
+
+
 }
 
+#teamLeft
+{
+    width:50%;
+    float:left;
+    background-color:green;
+}
+
+#teamRight
+{
+    width:50%;
+    float:left;
+    background-color:indigo;
+}
+
+#table
+{
+    background-color: khaki;
+}
+
+form
+{
+    border:1px solid red;
+    margin:0 auto;
+}
+
+#formDiv
+{
+    text-align: center;
+}
+
+#formDiv button, label, input
+{
+    display: inline;
+    float: none;
+}
+
+#tableDiv
+{
+    text-align: center;
+}
+
+#tableDiv form
+{
+    display: inline;
+    float: none;
+}
+
+#tableInside
+{
+    font-size: 16px;
+}

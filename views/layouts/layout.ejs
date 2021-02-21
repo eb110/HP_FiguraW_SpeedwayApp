@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../node_modules/jquery/dist/jquery.js"></script>
-    <script src="../../matchResultAjax.js"></script>
-    <script src="../../algorithm.js"></script>
+    <script src="../../ajax/matchResultAjax.js"></script>
+    <script src="../../ajax/algorithm.js"></script>
     <link rel="stylesheet" href="../../public/style.css" type="text/css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -15,21 +15,19 @@
 
 <body>
 
-    <div id="container">
+    <div id="wrapper">
 
-        <div id="logo">
-            <h1>Speedway History Service</h1>
-        </div>
+        <%- include('../partials/header.ejs') -%>
 
-        <div id="page">
+        <main>
             <%- body %> 
-        </div>
+        </main>
 
-        <div id="stopka">
-            <h1>Wladyslaw Figura Honours Project GCU 2021</h1>
-        </div>
+        <%- include('../partials/footer.ejs') -%>
 
     </div>
+
+  
 
 </body>
 
