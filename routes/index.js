@@ -30,7 +30,6 @@ router.get('/resultTable', (req,res) => {
 let dataTypedByUser = []
 router.post('/getResult', (req, res) => {
     dataTypedByUser = req.body.result
-    console.log(dataTypedByUser)
     res.send()
 })
 

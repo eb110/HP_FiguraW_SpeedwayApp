@@ -110,6 +110,7 @@ footer
 #table
 {
     background-color: khaki;
+    font-size: 18px;
 }
 
 form
@@ -123,24 +124,24 @@ form
     text-align: center;
 }
 
-#formDiv button, label, input
-{
-    display: inline;
-    float: none;
-}
+
 
 #tableDiv
 {
     text-align: center;
 }
 
-#tableDiv form
-{
-    display: inline;
-    float: none;
-}
-
 #tableInside
 {
-    font-size: 16px;
+    font-size: 18px;
+}
+
+#tableDiv input
+{
+    width:2%;
+}
+
+#tableDiv select
+{
+    width:15%;
 }
