@@ -89,6 +89,10 @@ $(function () {
 })
 
 function createMainTablePrintout(){
+    for(let i = 0; i < 8; i++){
+        teamA[i].position = 0
+        teamB[i].position = 0
+    }
     tablePositionsMainPrintout = []
     for (let i = 0; i < 13; i++) {
         tablePositionsMainPrintout.push('<div id="tableDiv">')
@@ -96,19 +100,36 @@ function createMainTablePrintout(){
             tablePositionsMainPrintout.push('<select id="h' + i + 'r' + k + '">')
             tablePositionsMainPrintout.push('<option value="' + tablePositions1[i][k].name + '">' + 
             tablePositions1[i][k].name + '</option>')  
-            let inlet = ''
-            if([0,2,4,6,7,9,11].includes(i))inlet = teamA
-            else inlet = teamB
-            for (let j = 0; j < 8; j++) {
-                tablePositionsMainPrintout.push('<option value="' + inlet[j].name + '">' + 
-                inlet[j].name + '</option>')                      
+            let inlet = reserveRidersQueue(tablePositions1[i][k].name)
+            for (let j = 0; j < inlet.length; j++) {
+                tablePositionsMainPrintout.push('<option value="' + inlet[j].name + ' (' + inlet[j].point + ') ' + '">' + 
+                inlet[j].name + ' (' + inlet[j].point + ') ' + '</option>')                      
             }
             tablePositionsMainPrintout.push('</select>')
-            tablePositionsMainPrintout.push('<input type="text" value="1">')
+            tablePositionsMainPrintout.push('<input type="text" value="' + tablePositions1[i][k].points + '">')
         }
         tablePositionsMainPrintout.push('<button id="#update-button">Update</button>')
         tablePositionsMainPrintout.push('</div>')
     }
+}
+
+function reserveRidersQueue(rider){
+    let reserveList = []
+    let team = []
+    if(teamA.some(x => x.name == rider))team = teamA
+    else team = teamB
+    for(let i = 0; i < 8; i++){
+        if(team[i].name == rider) {
+            team[i].position++
+        }
+        else if(team[i].position < 5){
+            let wsad = {}
+            wsad.name = team[i].name
+            wsad.point = team[i].points[team[i].position]
+            reserveList.push(wsad)
+        }
+    }
+    return reserveList
 }
 
 function playersDataCollect(range) {
