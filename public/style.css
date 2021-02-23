@@ -126,22 +126,32 @@ form
 
 
 
-#tableDiv
-{
-    text-align: center;
-}
+
 
 #tableInside
 {
     font-size: 18px;
 }
 
+#tableDiv
+{
+    text-align: center;
+    font-size: 18px;
+}
+
 #tableDiv input
 {
     width:2%;
+    font-size: 18px;
 }
 
 #tableDiv select
 {
-    width:15%;
+    width:18%;
+    font-size: 18px;
+}
+
+optgroup
+{
+    font-size: 18px;
 }
