@@ -8,7 +8,7 @@ body
 
 #wrapper
 {
-    width: 80%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 
@@ -54,13 +54,11 @@ footer
 
 #resultContainer
 {
-    background-color: cornflowerblue;
 }
 
 #square
 {
     float:left;
-    background-color: chartreuse;
     width: 50%;
 }
 
@@ -88,28 +86,22 @@ footer
 
 #algorithmContainer
 {
-    background-color: coral;
-
-
 }
 
 #teamLeft
 {
     width:50%;
     float:left;
-    background-color:green;
 }
 
 #teamRight
 {
     width:50%;
     float:left;
-    background-color:indigo;
 }
 
 #table
 {
-    background-color: khaki;
     font-size: 18px;
 }
 
@@ -137,21 +129,64 @@ form
 {
     text-align: center;
     font-size: 18px;
+    margin-bottom: 5px;
 }
 
 #tableDiv input
 {
     width:2%;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 #tableDiv select
 {
-    width:18%;
-    font-size: 18px;
+    width:17%;
+    font-size: 17px;
+}
+
+.l1
+{
+    width:100px;
+    display: inline-block;
+}
+
+.l2
+{
+    width:25px;
+    display: inline-block;
 }
 
 optgroup
 {
+    font-size: 17px;
+}
+
+.a
+{
+    width: 50%;
+    font-size: 18px;
+}
+.b
+{
+    width: 10%;
+    font-size: 18px;
+    background-color: #485b3b;
+    color:white;
+}
+.c
+{
+    width: 30%;
+    font-size: 18px;
+}
+
+.d
+{
+    border:1px solid red;
+    margin:0 auto;
+}
+
+.e
+{
+    width: 20%;
     font-size: 18px;
 }

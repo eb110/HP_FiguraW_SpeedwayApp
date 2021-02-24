@@ -11,6 +11,7 @@ $(function () {
         teamA = playersDataCollect(1)
         teamB = playersDataCollect(9)
         temporaryData(teamA, teamB)
+        console.log(teamB)
         speedwayRiders = teamA.concat(teamB)
         createInitialTablePositions()
         let result = [teamA, teamB]
@@ -92,6 +93,7 @@ $(function () {
 })
 
 function createUpdatedTablePositions(){
+    console.log(speedwayRiders)
     for(let i = 0; i < 16; i++)speedwayRiders[i].position = 0
     tablePositions1 = []
     for(let i = 0; i < 13; i++){
@@ -100,9 +102,8 @@ function createUpdatedTablePositions(){
             tablePositions1[i].push({})
             let temp = '#h' + i + 'r' + j
             let wsad = $(temp).val()
-            console.log(wsad)
             for(let k = 0; k < 16; k++){
-                if(wsad.includes(speedwayRiders[k].name)){
+                if(speedwayRiders[k].name != '' && wsad.includes(speedwayRiders[k].name)){
                     tablePositions1[i][j].name = speedwayRiders[k].name
                     tablePositions1[i][j].points = speedwayRiders[k].points[speedwayRiders[k].position++]
                     break
@@ -114,6 +115,8 @@ function createUpdatedTablePositions(){
 }
 
 function createMainTablePrintout(){
+    let home = 0
+    let guests = 0
     if(startingFlag == 0)startingFlag = 1
     else createUpdatedTablePositions()
     for(let i = 0; i < 8; i++){
@@ -123,7 +126,17 @@ function createMainTablePrintout(){
     tablePositionsMainPrintout = []
     for (let i = 0; i < 13; i++) {
         tablePositionsMainPrintout.push('<div id="tableDiv">')
+        tablePositionsMainPrintout.push('<label class="l2">' + (i + 1) + '</label>')
+        let h1 = tablePositions1[i][2].points
+        let h2 = tablePositions1[i][3].points
+        let g1 = tablePositions1[i][0].points
+        let g2 = tablePositions1[i][1].points
+        home += 'duwns-'.includes(h1) ? 0 : parseInt(h1)
+        home += 'duwns-'.includes(h2) ? 0 : parseInt(h2)
+        guests += 'duwns-'.includes(g1) ? 0 : parseInt(g1)
+        guests += 'duwns-'.includes(g2) ? 0 : parseInt(g2)
         for (let k = 0; k < 4; k++) {
+            let pkt = tablePositions1[i][k].points
             tablePositionsMainPrintout.push('<select id="h' + i + 'r' + k + '"><optgroup>')
             tablePositionsMainPrintout.push('<option value="' + tablePositions1[i][k].name + '">' + 
             tablePositions1[i][k].name + '</option>')  
@@ -133,7 +146,11 @@ function createMainTablePrintout(){
                 inlet[j].name + ' (' + inlet[j].point + ') ' + '</option>')                      
             }
             tablePositionsMainPrintout.push('</optgroup></select>')
-            tablePositionsMainPrintout.push('<input type="text" value="' + tablePositions1[i][k].points + '">')
+            tablePositionsMainPrintout.push('<input type="text" value="' + pkt + '">')
+            if(k == 1){
+                tablePositionsMainPrintout.push('<label class="l1">Guests: ' + guests + '</label>')
+                tablePositionsMainPrintout.push('<label class="l1">Home: ' + home + '</label>')
+            }
         }
         tablePositionsMainPrintout.push('</div>')
     }
@@ -174,7 +191,7 @@ function playersDataCollect(range) {
     return team
 }
 
-function temporaryData(a, b){
+function temporaryData(b, a){
     a[0].position = 0
     a[0].name = 'pociejkowicz konstanty'
     a[0].points[0] = 3
@@ -300,19 +317,19 @@ function createInitialTablePositions()
         }
     } 
 
-    heatPositioning(tablePositions1, 0, 0, 8, 1, 9)
-    heatPositioning(tablePositions1, 1, 10, 2, 11, 3)
-    heatPositioning(tablePositions1, 2, 4, 12, 5, 13)
-    heatPositioning(tablePositions1, 3, 9, 1, 14, 6)
-    heatPositioning(tablePositions1, 4, 4, 10, 5, 11)
-    heatPositioning(tablePositions1, 5, 8, 2, 9, 3)
-    heatPositioning(tablePositions1, 6, 0, 12, 1, 13)
-    heatPositioning(tablePositions1, 7, 3, 11, 6, 14)
-    heatPositioning(tablePositions1, 8, 8, 4, 9, 5)
-    heatPositioning(tablePositions1, 9, 2, 12, 3, 13)
-    heatPositioning(tablePositions1, 10, 10, 0, 11, 1)
-    heatPositioning(tablePositions1, 11, 2, 8, 5, 12)
-    heatPositioning(tablePositions1, 12, 10, 0, 13, 4)
+    heatPositioning(tablePositions1, 0, 0, 1, 8, 9)
+    heatPositioning(tablePositions1, 1, 2, 3, 10, 11)
+    heatPositioning(tablePositions1, 2, 4, 5, 12, 13)
+    heatPositioning(tablePositions1, 3, 1, 6, 9, 14)
+    heatPositioning(tablePositions1, 4, 4, 5, 10, 11)
+    heatPositioning(tablePositions1, 5, 2, 3, 8, 9)
+    heatPositioning(tablePositions1, 6, 0, 1, 12, 13)
+    heatPositioning(tablePositions1, 7, 3, 6, 11, 14)
+    heatPositioning(tablePositions1, 8, 4, 5, 8, 9)
+    heatPositioning(tablePositions1, 9, 2, 3, 12, 13)
+    heatPositioning(tablePositions1, 10, 0, 1, 10, 11)
+    heatPositioning(tablePositions1, 11, 2, 5, 8, 12)
+    heatPositioning(tablePositions1, 12, 0, 4, 10, 13)
 }
 
 function heatPositioning(table, heat, a, b, c, d){

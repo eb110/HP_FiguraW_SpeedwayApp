@@ -1,6 +1,26 @@
 <div id="resultContainer">
 
+    <form id="newRiderForm">
+        <div id="formDiv">
+            <button class="b" id="new-rider">New Rider</button>
+            <label>Name</label>
+            <input class="c" type="text" id="newRiderName">
+            <label>DOB</label>
+            <input class="e" type="date" id="newRiderDate">
+        </div>
+    </form>
+   
+    <hr>
+
+    <div class="d">
+
     <div id="square"> 
+        <div>
+            <label>Guests</label>
+            <input class="a" type="text">
+            <label>Points</label>
+            <input class="e" type="text">
+        </div>
         <% for (let i = 1; i <= 8; i++) { %>
 
             <div id="halfSquare">
@@ -33,6 +53,12 @@
     </div>   
       
     <div id="square"> 
+        <div>
+            <label>Home</label>
+            <input class="a" type="text">
+            <label>Points</label>
+            <input class="e" type="text">
+        </div>
         <% for (let i = 9; i <= 16; i++) { %>
 
             <div id="halfSquare">
@@ -66,31 +92,33 @@
 
     <div style="clear:both"></div>
 
-        <div>
-            <button id="get-result">Confirm</button>
-        </div>
-        <div>
-            <button id="update-button">Update</button>
-        </div>
+    <div style="text-align: center;">
+            <button class='b' id="get-result">Confirm</button>
+    </div>
 
-            <form id="newRiderForm">
-                <div id="formDiv">
-                    <button id="new-rider">New Rider</button>
-                    <label>Name</label>
-                    <input type="text" id="newRiderName">
-                    <label>DOB</label>
-                    <input type="date" id="newRiderDate">
-                </div>
-            </form>
+    </div>
+
+    <hr>
 
     <div id="algorithmContainer">
 
+        
+    <div class="d">
         <div id="teamLeft"></div>
         <div id="teamRight"></div>
 
         <div style="clear:both"></div>
-        <div id="table">
+    </div>
 
+    <hr>
+
+    <div class="d">
+        <div id="table">
+            </div>
+
+        <div style="text-align: center;">
+            <button class="b" id="update-button">Update</button>
+        </div>
         </div>
     </div>
 
