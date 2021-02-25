@@ -6,13 +6,15 @@ let tablePositionsMainPrintout = []
 let startingFlag = 0
 let finalResultGuest = []
 let finalResultHome = []
+let initialPositions = []
+let ridersChanges = []
 
 $(function () {
     $('#get-result').on('click', () => {
         event.preventDefault();
         teamA = playersDataCollect(1)
         teamB = playersDataCollect(9)
-        temporaryData(teamA, teamB)
+      //  temporaryData(teamA, teamB)
         speedwayRiders = teamA.concat(teamB)
         createInitialTablePositions()
         bonusCalculations()
@@ -23,7 +25,6 @@ $(function () {
             contentType: 'application/json',
             data: JSON.stringify({ result: result }),
             success: (response) => {
-                console.log(response)
                 $('#update-button').click()
             }
         })
@@ -45,6 +46,20 @@ $(function () {
         })
     })
 
+    $('#restart-button').on('click', () => {
+        for (let i = 0; i < 13; i++) {
+            tablePositions1[i] = initialPositions[i]
+        }
+        startingFlag = 0
+        bonusCalculations()
+        riderChangesFunction()
+        $('#update-button').click()
+    })
+
+    $('#finish-button').on('click', () => {
+        finalization()
+    })
+
     $('#update-button').on('click', () => {
         $.ajax({
             url: '/teamLeft',
@@ -52,13 +67,69 @@ $(function () {
             success: (response) => {
                 let teamLeftEL = $('#teamLeft')
                 let wsad = ''
-                for(let i = 0; i < 8; i++){
+                for (let i = 0; i < 8; i++) {
                     let a = finalResultGuest[i].name
                     let temp = '<div id="square2">' + a + '</div>'
                     temp += '<div id="square3">' + finalResultGuest[i].points[0] +
-                    ' ' + finalResultGuest[i].points[1] + ' ' + finalResultGuest[i].points[2] + 
-                    ' ' + finalResultGuest[i].points[3] + ' ' + finalResultGuest[i].points[4] +
-                    '</div> <div style="clear:both">'
+                        ' ' + finalResultGuest[i].points[1] + ' ' + finalResultGuest[i].points[2] +
+                        ' ' + finalResultGuest[i].points[3] + ' ' + finalResultGuest[i].points[4] +
+                        '</div> <div style="clear:both">'
+                    wsad += temp
+                }
+                teamLeftEL.html('')
+                teamLeftEL.append('\
+                    ' + wsad + '\
+                    ')
+            }
+        })
+    })
+
+    $('#finish-button').on('click', () => {
+        $.ajax({
+            url: '/teamLeft',
+            contentType: 'application/json',
+            success: (response) => {
+                let teamLeftEL = $('#teamLeft')
+                let wsad = ''
+                for (let i = 0; i < finalResultGuest.length; i++) {
+                    let a = finalResultGuest[i].name
+                    let temp = '<div id="square2">' + a + '</div>'
+                    temp += '<div id="square3">'
+                    for(let j = 0; j < finalResultGuest[i].points.length; j++) {
+                        if(j == finalResultGuest[i].points.length - 1){
+                            finalResultGuest[i].points[j] = finalResultGuest[i].points[j][0]
+                        }
+                        temp += finalResultGuest[i].points[j]
+                    }
+                    temp += '</div> <div style="clear:both">'
+                    wsad += temp
+                }
+                teamLeftEL.html('')
+                teamLeftEL.append('\
+                    ' + wsad + '\
+                    ')
+            }
+        })
+    })
+
+    $('#finish-button').on('click', () => {
+        $.ajax({
+            url: '/teamRight',
+            contentType: 'application/json',
+            success: (response) => {
+                let teamLeftEL = $('#teamRight')
+                let wsad = ''
+                for (let i = 0; i < finalResultHome.length; i++) {
+                    let a = finalResultHome[i].name
+                    let temp = '<div id="square2">' + a + '</div>'
+                    temp += '<div id="square3">'
+                    for(let j = 0; j < finalResultHome[i].points.length; j++) {
+                        if(j == finalResultHome[i].points.length - 1){
+                            finalResultHome[i].points[j] = finalResultHome[i].points[j][0]
+                        }
+                        temp += finalResultHome[i].points[j]
+                    }
+                    temp += '</div> <div style="clear:both">'
                     wsad += temp
                 }
                 teamLeftEL.html('')
@@ -76,13 +147,13 @@ $(function () {
             success: (response) => {
                 let teamRightEL = $('#teamRight')
                 let wsad = ''
-                for(let i = 0; i < 8; i++){
+                for (let i = 0; i < 8; i++) {
                     let a = finalResultHome[i].name
                     let temp = '<div id="square2">' + a + '</div>'
                     temp += '<div id="square3">' + finalResultHome[i].points[0] +
-                    ' ' + finalResultHome[i].points[1] + ' ' + finalResultHome[i].points[2] + 
-                    ' ' + finalResultHome[i].points[3] + ' ' + finalResultHome[i].points[4] +
-                    '</div> <div style="clear:both">'
+                        ' ' + finalResultHome[i].points[1] + ' ' + finalResultHome[i].points[2] +
+                        ' ' + finalResultHome[i].points[3] + ' ' + finalResultHome[i].points[4] +
+                        '</div> <div style="clear:both">'
                     wsad += temp
                 }
                 teamRightEL.html('')
@@ -94,17 +165,17 @@ $(function () {
     })
 })
 
-function createUpdatedTablePositions(){
-    for(let i = 0; i < 16; i++)speedwayRiders[i].position = 0
+function createUpdatedTablePositions() {
+    for (let i = 0; i < 16; i++)speedwayRiders[i].position = 0
     tablePositions1 = []
-    for(let i = 0; i < 13; i++){
+    for (let i = 0; i < 13; i++) {
         tablePositions1.push([])
-        for(let j = 0; j < 4; j++){
+        for (let j = 0; j < 4; j++) {
             tablePositions1[i].push({})
             let temp = '#h' + i + 'r' + j
             let wsad = $(temp).val()
-            for(let k = 0; k < 16; k++){
-                if(speedwayRiders[k].name != '' && wsad.includes(speedwayRiders[k].name)){
+            for (let k = 0; k < 16; k++) {
+                if (speedwayRiders[k].name != '' && wsad.includes(speedwayRiders[k].name)) {
                     tablePositions1[i][j].name = speedwayRiders[k].name
                     tablePositions1[i][j].points = speedwayRiders[k].points[speedwayRiders[k].position++]
                     break
@@ -113,14 +184,78 @@ function createUpdatedTablePositions(){
         }
     }
     bonusCalculations()
+    riderChangesFunction()
 }
 
-function createMainTablePrintout(){
+function finalization() {
+    let finalResultGuest2 = []
+    let finalResultHome2 = []
+    for (let i = 0; i < 8; i++) {
+        finalResultGuest2.push({})
+        finalResultHome2.push({})
+        finalResultGuest2[i].name = finalResultGuest[i].name
+        finalResultGuest2[i].points = finalResultGuest[i].points
+        finalResultHome2[i].name = finalResultHome[i].name
+        finalResultHome2[i].points = finalResultHome[i].points
+        finalResultHome2[i].position = 0
+        finalResultGuest2[i].position = 0
+        finalResultGuest[i].points = []
+        finalResultHome[i].points = []
+    }
+    let l = ridersChanges.length
+    for (let i = 0; i < 13; i++) {
+        let original = []
+        for (let k = 0; k < l; k++) {
+            if (ridersChanges[k].heatNr == i + 1) {
+                original.push(ridersChanges[k].original)
+            }
+        }
+        for (let m = 0; m < 8; m++) {
+            for (let n = 0; n < original.length; n++) {
+                if (finalResultGuest[m].name == original[n]) {
+                    finalResultGuest[m].points.push('-,')
+                }
+                if (finalResultHome[m].name == original[n]) {
+                    finalResultHome[m].points.push('-,')
+                }
+            }
+            for (let j = 0; j < 4; j++) {
+                if (finalResultGuest[m].name == tablePositions1[i][j].name) {
+                    finalResultGuest[m].points.push(finalResultGuest2[m].points[finalResultGuest2[m].position++])
+                }
+                if (finalResultHome[m].name == tablePositions1[i][j].name) {
+                    finalResultHome[m].points.push(finalResultHome2[m].points[finalResultHome2[m].position++])
+                }
+            }
+        }
+    }
+
+}
+
+function riderChangesFunction() {
+    ridersChanges = []
+    let counter = 0
+    for (let i = 0; i < 13; i++) {
+        for (let j = 0, k = 0; j < 4; j++) {
+            if (initialPositions[i][j].name != tablePositions1[i][j].name) {
+                ridersChanges.push({})
+                ridersChanges[counter].heatNr = i + 1
+                ridersChanges[counter].original = initialPositions[i][j].name
+                ridersChanges[counter].fullName = initialPositions[i][j].name + ' -> ' + tablePositions1[i][j].name
+                ridersChanges[counter++].reserve = tablePositions1[i][j].name
+
+            }
+        }
+
+    }
+}
+
+function createMainTablePrintout() {
     let home = 0
     let guests = 0
-    if(startingFlag == 0)startingFlag = 1
+    if (startingFlag == 0) startingFlag = 1
     else createUpdatedTablePositions()
-    for(let i = 0; i < 8; i++){
+    for (let i = 0; i < 8; i++) {
         teamA[i].position = 0
         teamB[i].position = 0
     }
@@ -139,16 +274,16 @@ function createMainTablePrintout(){
         for (let k = 0; k < 4; k++) {
             let pkt = tablePositions1[i][k].points
             tablePositionsMainPrintout.push('<select id="h' + i + 'r' + k + '"><optgroup>')
-            tablePositionsMainPrintout.push('<option value="' + tablePositions1[i][k].name + '">' + 
-            tablePositions1[i][k].name + '</option>')  
+            tablePositionsMainPrintout.push('<option value="' + tablePositions1[i][k].name + '">' +
+                tablePositions1[i][k].name + '</option>')
             let inlet = reserveRidersQueue(tablePositions1[i][k].name)
             for (let j = 0; j < inlet.length; j++) {
-                tablePositionsMainPrintout.push('<option value="' + inlet[j].name + ' (' + inlet[j].point + ') ' + '">' + 
-                inlet[j].name + ' (' + inlet[j].point + ') ' + '</option>')                      
+                tablePositionsMainPrintout.push('<option value="' + inlet[j].name + ' (' + inlet[j].point + ') ' + '">' +
+                    inlet[j].name + ' (' + inlet[j].point + ') ' + '</option>')
             }
             tablePositionsMainPrintout.push('</optgroup></select>')
             tablePositionsMainPrintout.push('<input type="text" value="' + pkt + '">')
-            if(k == 1){
+            if (k == 1) {
                 tablePositionsMainPrintout.push('<label class="l1">Guests: ' + guests + '</label>')
                 tablePositionsMainPrintout.push('<label class="l1">Home: ' + home + '</label>')
             }
@@ -157,20 +292,20 @@ function createMainTablePrintout(){
     }
 }
 
-function bonusCalculations(){
+function bonusCalculations() {
     finalResultHome = []
     finalResultGuest = []
-    for(let i = 0; i < 8; i++){
+    for (let i = 0; i < 8; i++) {
         finalResultGuest.push({})
         finalResultHome.push({})
         finalResultGuest[i].name = teamA[i].name
-        finalResultGuest[i].points = ['','','','','']
+        finalResultGuest[i].points = ['', '', '', '', '']
         finalResultHome[i].name = teamB[i].name
-        finalResultHome[i].points = ['','','','','']
+        finalResultHome[i].points = ['', '', '', '', '']
         finalResultGuest[i].position = 0
         finalResultHome[i].position = 0
     }
-    for(let i = 0; i < 13; i++){
+    for (let i = 0; i < 13; i++) {
         let gr1 = tablePositions1[i][0].name
         let gp1 = tablePositions1[i][0].points
         let gr2 = tablePositions1[i][1].name
@@ -179,49 +314,55 @@ function bonusCalculations(){
         let hp1 = tablePositions1[i][2].points
         let hr2 = tablePositions1[i][3].name
         let hp2 = tablePositions1[i][3].points
-        if(bonusMarking(gp1, gp2, hp1, hp2))gp1 += '+'
-        else if(bonusMarking(gp2, gp1, hp1, hp2))gp2 += '+'
-        else if(bonusMarking(hp1, hp2, gp1, gp2))hp1 += '+'
-        else if(bonusMarking(hp2, hp1, gp1, gp2))hp2 += '+'
-        for(let j = 0; j < 8; j++){
-            if(finalResultGuest[j].name == gr1)finalResultGuest[j].points[finalResultGuest[j].position++] = gp1 + ','
-            else if(finalResultGuest[j].name == gr2)finalResultGuest[j].points[finalResultGuest[j].position++] = gp2 + ','
-            if(finalResultHome[j].name == hr1)finalResultHome[j].points[finalResultHome[j].position++] = hp1 + ','
-            else if(finalResultHome[j].name == hr2)finalResultHome[j].points[finalResultHome[j].position++] = hp2 + ','
+        if (bonusMarking(gp1, gp2, hp1, hp2)) gp1 += '+'
+        else if (bonusMarking(gp2, gp1, hp1, hp2)) gp2 += '+'
+        else if (bonusMarking(hp1, hp2, gp1, gp2)) hp1 += '+'
+        else if (bonusMarking(hp2, hp1, gp1, gp2)) hp2 += '+'
+        for (let j = 0; j < 8; j++) {
+            if (finalResultGuest[j].name == gr1) finalResultGuest[j].points[finalResultGuest[j].position++] = gp1 + ','
+            else if (finalResultGuest[j].name == gr2) finalResultGuest[j].points[finalResultGuest[j].position++] = gp2 + ','
+            if (finalResultHome[j].name == hr1) finalResultHome[j].points[finalResultHome[j].position++] = hp1 + ','
+            else if (finalResultHome[j].name == hr2) finalResultHome[j].points[finalResultHome[j].position++] = hp2 + ','
         }
     }
-    console.log(finalResultGuest)
-    console.log(finalResultHome)
 }
 
-function bonusMarking(b, brother, a1, a2){
-    if(b == '2' && brother == '3'){
-        if(a1 == '1' || a2 == '1')return true
+function bonusMarking(b, brother, a1, a2) {
+    if (b == '2' && brother == '3') {
+        if (a1 == '1' || a2 == '1') return true
         return false
     }
-    if(b == '1' && brother == '2'){
-        if(a1 == '0' || a2 == '0')return true
+    if (b == '1' && brother == '2') {
+        if (a1 == '0' || a2 == '0') return true
         return false
     }
     return false
 }
 
-function colourTheDiv(a,b,c,d){
-    if(a == '-' || b == '-' || c == '-' || d == '-')
-    return '<div id="tableDiv" style="color:red;">'
-    else return '<div id="tableDiv">'
+function colourTheDiv(a, b, c, d) {
+    if (a == '-' || b == '-' || c == '-' || d == '-')
+        return '<div id="tableDiv" style="color:red;">'
+    let temp = ''
+    temp += a + "" + b + "" + c + "" + d
+    if (temp.includes('0')) {
+        if (temp.includes('u')) return '<div id="tableDiv" style="color:red;">'
+        if (temp.includes('w')) return '<div id="tableDiv" style="color:red;">'
+        if (temp.includes('ns')) return '<div id="tableDiv" style="color:red;">'
+        if (temp.includes('d')) return '<div id="tableDiv" style="color:red;">'
+    }
+    return '<div id="tableDiv">'
 }
 
-function reserveRidersQueue(rider){
+function reserveRidersQueue(rider) {
     let reserveList = []
     let team = []
-    if(teamA.some(x => x.name == rider))team = teamA
+    if (teamA.some(x => x.name == rider)) team = teamA
     else team = teamB
-    for(let i = 0; i < 8; i++){
-        if(team[i].name == rider) {
+    for (let i = 0; i < 8; i++) {
+        if (team[i].name == rider) {
             team[i].position++
         }
-        else if(team[i].position < 5 && team[i].points[team[i].position] != '-'){
+        else if (team[i].position < 5 && team[i].points[team[i].position] != '-') {
             let wsad = {}
             wsad.name = team[i].name
             wsad.point = team[i].points[team[i].position]
@@ -237,17 +378,17 @@ function playersDataCollect(range) {
         team.push({})
         team[i].points = []
         let nameId = '#Rnr' + (i + range)
-        team[i].name = $(nameId).val() + 'NAME' + (i + range)
+        team[i].name = $(nameId).val()
         team[i].position = 0
         for (let j = 0; j < 5; j++) {
             let pointId = nameId + "Pnr" + (j + 1)
-            team[i].points.push($(pointId).val() + j)
+            team[i].points.push($(pointId).val())
         }
     }
     return team
 }
 
-function temporaryData(b, a){
+function temporaryData(b, a) {
     a[0].position = 0
     a[0].name = 'pociejkowicz konstanty'
     a[0].points[0] = 3
@@ -362,16 +503,15 @@ function temporaryData(b, a){
     b[7].points[4] = ''
 }
 
-function createInitialTablePositions()
-{
-    for(let i = 0; i < 16; i++)speedwayRiders[i].position = 0
+function createInitialTablePositions() {
+    for (let i = 0; i < 16; i++)speedwayRiders[i].position = 0
     tablePositions1 = []
-    for(let i = 0; i < 13; i++){
+    for (let i = 0; i < 13; i++) {
         tablePositions1.push([])
-        for(let j = 0; j < 4; j++){
+        for (let j = 0; j < 4; j++) {
             tablePositions1[i].push({})
         }
-    } 
+    }
 
     heatPositioning(tablePositions1, 0, 0, 1, 8, 9)
     heatPositioning(tablePositions1, 1, 2, 3, 10, 11)
@@ -386,9 +526,10 @@ function createInitialTablePositions()
     heatPositioning(tablePositions1, 10, 0, 1, 10, 11)
     heatPositioning(tablePositions1, 11, 2, 5, 8, 12)
     heatPositioning(tablePositions1, 12, 0, 4, 10, 13)
+    for (let i = 0; i < 13; i++) initialPositions[i] = tablePositions1[i]
 }
 
-function heatPositioning(table, heat, a, b, c, d){
+function heatPositioning(table, heat, a, b, c, d) {
     table[heat][0].name = speedwayRiders[a].name
     table[heat][0].points = speedwayRiders[a].points[speedwayRiders[a].position++]
     table[heat][1].name = speedwayRiders[b].name

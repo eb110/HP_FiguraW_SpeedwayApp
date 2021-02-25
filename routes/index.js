@@ -23,8 +23,8 @@ router.get('/newResult', async (req, res) => {
     })
 })
 
-router.get('/resultTable', (req,res) => {
-    res.send({riders: ridersList})
+router.get('/resultTable', (req, res) => {
+    res.send({ riders: ridersList })
 })
 
 let dataTypedByUser = []
@@ -36,19 +36,28 @@ router.post('/getResult', (req, res) => {
 router.post('/newRider', async (req, res) => {
     let newRdr = req.body.newRider
     newRdr.date = new Date(newRdr.date)
-    const newRider = await new Rider({
-        name: newRdr.name,
-        bornYear: newRdr.date
-    })
-    await newRider.save()
+    if (newRdr.name != '') {
+        try {
+            const newRider = new Rider({
+                name: newRdr.name,
+                bornYear: newRdr.date
+            })
+            await newRider.save()
+            console.log('rider created')
+            console.log(newRdr.name)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    else console.log('empty rider')
 })
 
-router.get('/teamLeft', (req,res) => {
-    res.send({riders: dataTypedByUser[0]})
+router.get('/teamLeft', (req, res) => {
+    res.send({ riders: dataTypedByUser[0] })
 })
 
-router.get('/teamRight', (req,res) => {
-    res.send({riders: dataTypedByUser[1]})
+router.get('/teamRight', (req, res) => {
+    res.send({ riders: dataTypedByUser[1] })
 })
 
 

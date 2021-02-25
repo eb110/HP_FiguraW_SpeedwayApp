@@ -52,10 +52,6 @@ footer
     2px -2px 0 #33402a;
 }
 
-#resultContainer
-{
-}
-
 #square
 {
     float:left;
@@ -82,10 +78,6 @@ footer
 {
     width:80%;
     float:left;
-}
-
-#algorithmContainer
-{
 }
 
 #teamLeft
@@ -172,6 +164,13 @@ optgroup
 .b
 {
     width: 10%;
+    font-size: 18px;
+    background-color: #485b3b;
+    color:white;
+}
+.b2
+{
+    width: 20%;
     font-size: 18px;
     background-color: #485b3b;
     color:white;
