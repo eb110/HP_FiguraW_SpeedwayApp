@@ -116,15 +116,6 @@ form
     text-align: center;
 }
 
-
-
-
-
-#tableInside
-{
-    font-size: 18px;
-}
-
 #tableDiv
 {
     text-align: center;
@@ -136,6 +127,18 @@ form
 {
     width:2%;
     font-size: 17px;
+}
+
+#square2
+{
+    width:50%;
+    float:left;
+    padding-left: 15%;
+}
+#square3
+{
+    width:20%;
+    float:left;
 }
 
 #tableDiv select
