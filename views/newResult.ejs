@@ -28,12 +28,16 @@
                         <label>Nr <%= i %> </label>
                     </div>
                     <div id="inputId">
-                        <input type="text" id="Rnr<%= i %>" list="datalist1" class="rdsInput">
-                        <datalist id="datalist1">
-                            <% for (let k=0; k <riders.length; k++) { %>
-                                <option value="<%= riders[k] %> ">
+                        <select id="Rnr<%= i %>" class="rdsInput">
+                            <optgroup>
+                                <option value="DNS">DNS</option>
+                                <% for (let k=0; k <riders.length; k++) { %>
+                                    <option value="<%= riders[k] %> ">
+                                        <%= riders[k] %>
+                                    </option>
                                     <% } %>
-                        </datalist>
+                            </optgroup>
+                        </select>
                     </div>
                     <div style="clear:both"></div>
                 </div>
@@ -44,7 +48,7 @@
                     </div>
                     <div id="inputId">
                         <% for (let j=0; j < 5; j++) { %>
-                            <input type="text" id="Rnr<%= i%>Pnr<%= j+1%>" class="ptsInput">
+                            <input type="text" id="Rnr<%= i%>Pnr<%= j+1%>" class="ptsInput" value="ns">
                             <% } %>
                     </div>
                 </div>
@@ -66,12 +70,16 @@
                         <label>Nr <%= i %> </label>
                     </div>
                     <div id="inputId">
-                        <input type="text" id="Rnr<%= i %>" list="datalist1" class="rdsInput">
-                        <datalist id="datalist1">
-                            <% for (let k=0; k <riders.length; k++) { %>
-                                <option value="<%= riders[k] %> ">
+                        <select id="Rnr<%= i %>" class="rdsInput">
+                            <optgroup>
+                                <option value="DNS">DNS</option>
+                                <% for (let k=0; k <riders.length; k++) { %>
+                                    <option value="<%= riders[k] %> ">
+                                        <%= riders[k] %>
+                                    </option>
                                     <% } %>
-                        </datalist>
+                            </optgroup>
+                        </select>
                     </div>
                     <div style="clear:both"></div>
                 </div>
@@ -82,7 +90,7 @@
                     </div>
                     <div id="inputId">
                         <% for (let j=0; j < 5; j++) { %>
-                            <input type="text" id="Rnr<%= i%>Pnr<%= j+1%>" class="ptsInput">
+                            <input type="text" id="Rnr<%= i%>Pnr<%= j+1%>" class="ptsInput" value="ns">
                             <% } %>
                     </div>
                 </div>
@@ -111,20 +119,20 @@
                 <button class="b2" id="update-button">Update</button>
             </div>
             <div style="clear:both"></div>
-            
+
         </div>
 
-            <hr>
+        <hr>
 
-            <div class="d">
-                <div id="teamLeft"></div>
-                <div id="teamRight"></div>
-                <div style="clear:both"></div>
-            </div>
+        <div class="d">
+            <div id="teamLeft"></div>
+            <div id="teamRight"></div>
+            <div style="clear:both"></div>
+        </div>
 
 
 
-        
+
     </div>
 
     <hr>

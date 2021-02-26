@@ -14,7 +14,7 @@ $(function () {
         event.preventDefault();
         teamA = playersDataCollect(1)
         teamB = playersDataCollect(9)
-      //  temporaryData(teamA, teamB)
+        temporaryData(teamA, teamB)
         speedwayRiders = teamA.concat(teamB)
         createInitialTablePositions()
         bonusCalculations()
@@ -68,11 +68,11 @@ $(function () {
                 let teamLeftEL = $('#teamLeft')
                 let wsad = ''
                 for (let i = 0; i < 8; i++) {
-                    let a = finalResultGuest[i].name
+                    let a = teamA[i].name
                     let temp = '<div id="square2">' + a + '</div>'
-                    temp += '<div id="square3">' + finalResultGuest[i].points[0] +
-                        ' ' + finalResultGuest[i].points[1] + ' ' + finalResultGuest[i].points[2] +
-                        ' ' + finalResultGuest[i].points[3] + ' ' + finalResultGuest[i].points[4] +
+                    temp += '<div id="square3">' + teamA[i].points[0] +
+                        ', ' + teamA[i].points[1] + ', ' + teamA[i].points[2] +
+                        ', ' + teamA[i].points[3] + ', ' + teamA[i].points[4] +
                         '</div> <div style="clear:both">'
                     wsad += temp
                 }
@@ -148,11 +148,11 @@ $(function () {
                 let teamRightEL = $('#teamRight')
                 let wsad = ''
                 for (let i = 0; i < 8; i++) {
-                    let a = finalResultHome[i].name
+                    let a = teamB[i].name
                     let temp = '<div id="square2">' + a + '</div>'
-                    temp += '<div id="square3">' + finalResultHome[i].points[0] +
-                        ' ' + finalResultHome[i].points[1] + ' ' + finalResultHome[i].points[2] +
-                        ' ' + finalResultHome[i].points[3] + ' ' + finalResultHome[i].points[4] +
+                    temp += '<div id="square3">' + teamB[i].points[0] +
+                        ', ' + teamB[i].points[1] + ', ' + teamB[i].points[2] +
+                        ', ' + teamB[i].points[3] + ', ' + teamB[i].points[4] +
                         '</div> <div style="clear:both">'
                     wsad += temp
                 }
@@ -340,7 +340,7 @@ function bonusMarking(b, brother, a1, a2) {
 }
 
 function colourTheDiv(a, b, c, d) {
-    if (a == '-' || b == '-' || c == '-' || d == '-')
+    if (a == 'ns' || b == 'ns' || c == 'ns' || d == 'ns')
         return '<div id="tableDiv" style="color:red;">'
     let temp = ''
     temp += a + "" + b + "" + c + "" + d
@@ -350,6 +350,10 @@ function colourTheDiv(a, b, c, d) {
         if (temp.includes('ns')) return '<div id="tableDiv" style="color:red;">'
         if (temp.includes('d')) return '<div id="tableDiv" style="color:red;">'
     }
+    if([a,b,c,d].filter(x => x == '1').length > 1)return '<div id="tableDiv" style="color:red;">'
+    if([a,b,c,d].filter(x => x == '2').length > 1)return '<div id="tableDiv" style="color:red;">'
+    if([a,b,c,d].filter(x => x == '3').length > 1)return '<div id="tableDiv" style="color:red;">'
+    if([a,b,c,d].filter(x => x == '0').length > 1)return '<div id="tableDiv" style="color:red;">'
     return '<div id="tableDiv">'
 }
 
@@ -390,117 +394,117 @@ function playersDataCollect(range) {
 
 function temporaryData(b, a) {
     a[0].position = 0
-    a[0].name = 'pociejkowicz konstanty'
-    a[0].points[0] = 3
-    a[0].points[1] = 3
-    a[0].points[2] = 3
-    a[0].points[3] = 3
-    a[0].points[4] = '-'
+    a[0].name = 'Podlecki Zbigniew'
+    a[0].points[0] = '2'
+    a[0].points[1] = '3'
+    a[0].points[2] = '3'
+    a[0].points[3] = '2'
+    a[0].points[4] = 'ns'
     a[1].position = 0
-    a[1].name = 'bruzda piotr'
-    a[1].points[0] = 2
-    a[1].points[1] = 2
-    a[1].points[2] = 2
-    a[1].points[3] = 2
-    a[1].points[4] = '-'
+    a[1].name = 'Sulewski Jan'
+    a[1].points[0] = '1'
+    a[1].points[1] = '2'
+    a[1].points[2] = '1'
+    a[1].points[3] = 'd'
+    a[1].points[4] = 'ns'
     a[2].position = 0
-    a[2].name = 'trzeszkowski jerzy'
-    a[2].points[0] = 3
-    a[2].points[1] = 3
-    a[2].points[2] = 3
-    a[2].points[3] = 3
-    a[2].points[4] = '-'
+    a[2].name = 'Berliński Bogdan'
+    a[2].points[0] = '3'
+    a[2].points[1] = '2'
+    a[2].points[2] = '2'
+    a[2].points[3] = '3'
+    a[2].points[4] = 'ns'
     a[3].position = 0
-    a[3].name = 'domiszewski andrzej'
-    a[3].points[0] = 'u'
-    a[3].points[1] = '-'
-    a[3].points[2] = '-'
-    a[3].points[3] = '-'
-    a[3].points[4] = '-'
+    a[3].name = 'Kaiser Stanisław'
+    a[3].points[0] = '1'
+    a[3].points[1] = '1'
+    a[3].points[2] = '2'
+    a[3].points[3] = '1'
+    a[3].points[4] = 'ns'
     a[4].position = 0
-    a[4].name = 'jaroszewicz bohdan'
-    a[4].points[0] = 'w'
-    a[4].points[1] = 3
-    a[4].points[2] = 3
-    a[4].points[3] = 2
-    a[4].points[4] = '-'
+    a[4].name = 'Wieczorek Roman'
+    a[4].points[0] = '1'
+    a[4].points[1] = '1'
+    a[4].points[2] = 'ns'
+    a[4].points[3] = 'ns'
+    a[4].points[4] = 'ns'
     a[5].position = 0
-    a[5].name = 'antos zygmunt'
-    a[5].points[0] = 3
-    a[5].points[1] = 1
-    a[5].points[2] = 1
-    a[5].points[3] = '-'
-    a[5].points[4] = '-'
+    a[5].name = 'Tkocz Jan'
+    a[5].points[0] = '3'
+    a[5].points[1] = '2'
+    a[5].points[2] = '2'
+    a[5].points[3] = '1'
+    a[5].points[4] = 'ns'
     a[6].position = 0
-    a[6].name = 'słaboń adolf'
-    a[6].points[0] = 3
-    a[6].points[1] = 3
-    a[6].points[2] = 2
-    a[6].points[3] = '-'
-    a[6].points[4] = '-'
+    a[6].name = 'Żyto Henryk'
+    a[6].points[0] = '3'
+    a[6].points[1] = '3'
+    a[6].points[2] = '3'
+    a[6].points[3] = '3'
+    a[6].points[4] = 'ns'
     a[7].position = 0
-    a[7].name = 'nowak stanisław'
-    a[7].points[0] = 2
-    a[7].points[1] = 1
-    a[7].points[2] = 1
-    a[7].points[3] = '-'
-    a[7].points[4] = '-'
+    a[7].name = 'DNS'
+    a[7].points[0] = 'ns'
+    a[7].points[1] = 'ns'
+    a[7].points[2] = 'ns'
+    a[7].points[3] = 'ns'
+    a[7].points[4] = 'ns'
     b[0].position = 0
-    b[0].name = 'malinowski jan'
-    b[0].points[0] = 1
-    b[0].points[1] = 2
-    b[0].points[2] = 'd'
-    b[0].points[3] = 2
-    b[0].points[4] = 1
+    b[0].name = 'Pytko Zygmunt'
+    b[0].points[0] = '3'
+    b[0].points[1] = '3'
+    b[0].points[2] = '3'
+    b[0].points[3] = '3'
+    b[0].points[4] = '2'
     b[1].position = 0
-    b[1].name = 'lalicki stanisław'
-    b[1].points[0] = 0
-    b[1].points[1] = 1
-    b[1].points[2] = 'd'
-    b[1].points[3] = 0
-    b[1].points[4] = '-'
+    b[1].name = 'Ptak Józef'
+    b[1].points[0] = '0'
+    b[1].points[1] = '1'
+    b[1].points[2] = '0'
+    b[1].points[3] = 'ns'
+    b[1].points[4] = 'ns'
     b[2].position = 0
-    b[2].name = 'kolber jan'
-    b[2].points[0] = 2
-    b[2].points[1] = 'w'
-    b[2].points[2] = 2
-    b[2].points[3] = 1
-    b[2].points[4] = '-'
+    b[2].name = 'Chorabik Stanisław'
+    b[2].points[0] = '2'
+    b[2].points[1] = '0'
+    b[2].points[2] = 'u'
+    b[2].points[3] = '1'
+    b[2].points[4] = 'ns'
     b[3].position = 0
-    b[3].name = 'stawecki marian'
-    b[3].points[0] = 1
-    b[3].points[1] = 1
-    b[3].points[2] = 2
-    b[3].points[3] = 'd'
-    b[3].points[4] = '-'
+    b[3].name = 'Kwaśniewicz Jan'
+    b[3].points[0] = '0'
+    b[3].points[1] = '2'
+    b[3].points[2] = '1'
+    b[3].points[3] = 'ns'
+    b[3].points[4] = 'ns'
     b[4].position = 0
-    b[4].name = 'batko józef'
-    b[4].points[0] = 2
-    b[4].points[1] = 1
-    b[4].points[2] = 'u'
-    b[4].points[3] = '-'
-    b[4].points[4] = '-'
+    b[4].name = 'Tanaś Andrzej'
+    b[4].points[0] = '2'
+    b[4].points[1] = '0'
+    b[4].points[2] = '2'
+    b[4].points[3] = '1'
+    b[4].points[4] = '0'
     b[5].position = 0
-    b[5].name = 'spychała marian'
-    b[5].points[0] = 1
-    b[5].points[1] = 0
-    b[5].points[2] = 0
-    b[5].points[3] = '-'
-    b[5].points[4] = '-'
+    b[5].name = 'Golonka Andrzej'
+    b[5].points[0] = 'w'
+    b[5].points[1] = '1'
+    b[5].points[2] = '0'
+    b[5].points[3] = 'ns'
+    b[5].points[4] = 'ns'
     b[6].position = 0
-    b[6].name = 'krajewski marian'
-    b[6].points[0] = 0
-    b[6].points[1] = 0
-    b[6].points[2] = 0
-    b[6].points[3] = '-'
-    b[6].points[4] = '-'
+    b[6].name = 'Pacura Stanisław'
+    b[6].points[0] = 'u'
+    b[6].points[1] = 'u'
+    b[6].points[2] = '0'
+    b[6].points[3] = 'ns'
+    b[6].points[4] = 'ns'
     b[7].position = 0
-    b[7].name = ''
-    b[7].points[0] = ''
-    b[7].points[1] = ''
-    b[7].points[2] = ''
-    b[7].points[3] = ''
-    b[7].points[4] = ''
+    b[7].name = 'DNS'
+    b[7].points[0] = 'ns'
+    b[7].points[1] = 'ns'
+    b[7].points[2] = 'ns'
+    b[7].points[3] = 'ns'
+    b[7].points[4] = 'ns'
 }
 
 function createInitialTablePositions() {
