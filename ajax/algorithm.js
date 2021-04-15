@@ -1,3 +1,10 @@
+/*
+Project Created by Wladyslaw Figura
+S1920048
+Glasgow Caledonian University Honours Project
+Computing 2021
+*/
+
 let teamA = []
 let teamB = []
 let speedwayRiders = []
@@ -542,4 +549,119 @@ function heatPositioning(table, heat, a, b, c, d) {
     table[heat][2].points = speedwayRiders[c].points[speedwayRiders[c].position++]
     table[heat][3].name = speedwayRiders[d].name
     table[heat][3].points = speedwayRiders[d].points[speedwayRiders[d].position++]
+}
+
+function temporaryData2(b, a) {
+    a[0].position = 0
+    a[0].name = 'Pociejkowicz Konstanty'
+    a[0].points[0] = '3'
+    a[0].points[1] = '3'
+    a[0].points[2] = '3'
+    a[0].points[3] = '3'
+    a[0].points[4] = 'ns'
+    a[1].position = 0
+    a[1].name = 'Bruzda Piotr'
+    a[1].points[0] = '2'
+    a[1].points[1] = '2'
+    a[1].points[2] = '2'
+    a[1].points[3] = '2'
+    a[1].points[4] = 'ns'
+    a[2].position = 0
+    a[2].name = 'Trzeszkowski Jerzy'
+    a[2].points[0] = '3'
+    a[2].points[1] = '3'
+    a[2].points[2] = '3'
+    a[2].points[3] = '3'
+    a[2].points[4] = 'ns'
+    a[3].position = 0
+    a[3].name = 'Domiszewski Andrzej'
+    a[3].points[0] = 'u'
+    a[3].points[1] = 'ns'
+    a[3].points[2] = 'ns'
+    a[3].points[3] = 'ns'
+    a[3].points[4] = 'ns'
+    a[4].position = 0
+    a[4].name = 'Jaroszewicz Bohdan'
+    a[4].points[0] = 'w'
+    a[4].points[1] = '3'
+    a[4].points[2] = '3'
+    a[4].points[3] = '2'
+    a[4].points[4] = 'ns'
+    a[5].position = 0
+    a[5].name = 'Antos Zygmunt'
+    a[5].points[0] = '3'
+    a[5].points[1] = '1'
+    a[5].points[2] = '1'
+    a[5].points[3] = 'ns'
+    a[5].points[4] = 'ns'
+    a[6].position = 0
+    a[6].name = 'Słaboń Adolf'
+    a[6].points[0] = '3'
+    a[6].points[1] = '3'
+    a[6].points[2] = '2'
+    a[6].points[3] = 'ns'
+    a[6].points[4] = 'ns'
+    a[7].position = 0
+    a[7].name = 'Nowak Stanisław'
+    a[7].points[0] = '2'
+    a[7].points[1] = '1'
+    a[7].points[2] = '1'
+    a[7].points[3] = 'ns'
+    a[7].points[4] = 'ns'
+    b[0].position = 0
+    b[0].name = 'Malinowski Jan'
+    b[0].points[0] = '1'
+    b[0].points[1] = '2'
+    b[0].points[2] = 'd'
+    b[0].points[3] = '2'
+    b[0].points[4] = '1'
+    b[1].position = 0
+    b[1].name = 'Lalicki Stanisław'
+    b[1].points[0] = '0'
+    b[1].points[1] = '1'
+    b[1].points[2] = 'd'
+    b[1].points[3] = '0'
+    b[1].points[4] = 'ns'
+    b[2].position = 0
+    b[2].name = 'Kolber Jan'
+    b[2].points[0] = '2'
+    b[2].points[1] = 'w'
+    b[2].points[2] = '2'
+    b[2].points[3] = '1'
+    b[2].points[4] = 'ns'
+    b[3].position = 0
+    b[3].name = 'Stawecki Marian'
+    b[3].points[0] = '1'
+    b[3].points[1] = '1'
+    b[3].points[2] = '2'
+    b[3].points[3] = 'd'
+    b[3].points[4] = 'ns'
+    b[4].position = 0
+    b[4].name = 'Batko Józef'
+    b[4].points[0] = '2'
+    b[4].points[1] = '1'
+    b[4].points[2] = 'u'
+    b[4].points[3] = 'ns'
+    b[4].points[4] = 'ns'
+    b[5].position = 0
+    b[5].name = 'Spychała Marian'
+    b[5].points[0] = '1'
+    b[5].points[1] = '0'
+    b[5].points[2] = '0'
+    b[5].points[3] = 'ns'
+    b[5].points[4] = 'ns'
+    b[6].position = 0
+    b[6].name = 'Krajewski Marian'
+    b[6].points[0] = '0'
+    b[6].points[1] = '0'
+    b[6].points[2] = '0'
+    b[6].points[3] = 'ns'
+    b[6].points[4] = 'ns'
+    b[7].position = 0
+    b[7].name = 'DNS'
+    b[7].points[0] = 'ns'
+    b[7].points[1] = 'ns'
+    b[7].points[2] = 'ns'
+    b[7].points[3] = 'ns'
+    b[7].points[4] = 'ns'
 }

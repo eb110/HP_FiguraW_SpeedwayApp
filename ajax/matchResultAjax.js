@@ -1,3 +1,10 @@
+/*
+Project Created by Wladyslaw Figura
+S1920048
+Glasgow Caledonian University Honours Project
+Computing 2021
+*/
+
 $(function(){
     $('#new-rider').on('click', () => {
         event.preventDefault();

@@ -1,3 +1,10 @@
+/*
+Project Created by Wladyslaw Figura
+S1920048
+Glasgow Caledonian University Honours Project
+Computing 2021
+*/
+
 const mongoose = require('mongoose');
 const Rider = new mongoose.Schema({
  name:{

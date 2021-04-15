@@ -1,3 +1,10 @@
+/*
+Project Created by Wladyslaw Figura
+S1920048
+Glasgow Caledonian University Honours Project
+Computing 2021
+*/
+
 const express = require('express')
 const router = express.Router()
 
@@ -9,6 +16,10 @@ let ridersList = []
 
 router.get('/', (req, res) => {
     res.render('index.ejs')
+})
+
+router.get('/resultTable', (req, res) => {
+    res.send({ riders: ridersList })
 })
 
 router.get('/newResult', async (req, res) => {
@@ -23,9 +34,7 @@ router.get('/newResult', async (req, res) => {
     })
 })
 
-router.get('/resultTable', (req, res) => {
-    res.send({ riders: ridersList })
-})
+
 
 let dataTypedByUser = []
 router.post('/getResult', (req, res) => {
